@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resumeapp/routs/routs.dart';
+import 'package:resumeapp/utils/routs.dart';
 
 
 void main() {

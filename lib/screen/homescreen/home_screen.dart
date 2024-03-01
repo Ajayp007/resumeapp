@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState(){
     super.initState();
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
     ]);
   }
   @override
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     feel(
                         icons: 'user.png',
                         name: 'Personal Details',
-                        routes: 'details'),
+                        routes: 'personal'),
                     feel(
                         icons: 'mortarboard.png',
                         name: 'Education',
@@ -71,15 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     feel(
                         icons: 'experience.png',
                         name: 'Technical Skills',
-                        routes: 'technic'),
+                        routes: 'technical'),
                     feel(
                         icons: 'open-book.png',
                         name: 'Interest/Hobbies',
-                        routes: 'hobby'),
+                        routes: 'interest'),
                     feel(
                         icons: 'project.png',
                         name: 'Projects',
-                        routes: 'projects'),
+                        routes: 'project'),
                     feel(
                         icons: 'experience.png',
                         name: 'Achievements',
