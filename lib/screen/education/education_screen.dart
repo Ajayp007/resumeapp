@@ -8,6 +8,14 @@ class EducationScreen extends StatefulWidget {
 }
 
 class _EducationScreenState extends State<EducationScreen> {
+
+  GlobalKey<FormState>formkey=GlobalKey();
+
+  TextEditingController txtcorse =TextEditingController();
+  TextEditingController txtsch =TextEditingController();
+  TextEditingController txtpr =TextEditingController();
+  TextEditingController txtyear =TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,90 +28,127 @@ class _EducationScreenState extends State<EducationScreen> {
           ),
           centerTitle: true,
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey.shade200,
         body: Expanded(
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(
+              child: Form(
+                key: formkey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.sizeOf(context).width,
+                      decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Course/degree",
-                            style: TextStyle(color: Colors.blue, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextField(
-                            decoration: InputDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child:  Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Course/degree",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: ("B. Tech Information Technology")),
-                            keyboardType: TextInputType.text,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "School/College/Institue",
-                            style: TextStyle(color: Colors.blue, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextField(
-                            decoration: InputDecoration(
+                                hintText: ("B. Tech Information Technology"),
+                                hintStyle: TextStyle(
+                                    color: Colors.black12, fontSize: 20),
+                              ),
+                              validator: (value) {
+                                if(value!.isEmpty || value == null)
+                                  {
+                                    return "Please Enter The Details";
+                                  }
+                                return null;
+                              },
+                              controller: txtcorse,
+
+                              keyboardType: TextInputType.text,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              "School/College/Institute",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: ("Bhagwan Mahavir University")),
-                            keyboardType: TextInputType.text,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "School/College/Institue",
-                            style: TextStyle(color: Colors.blue, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextField(
-                            decoration: InputDecoration(
+                                hintText: ("Bhagwan Mahavir University"),
+                                hintStyle: TextStyle(
+                                    color: Colors.black12, fontSize: 20),
+                              ),
+                              keyboardType: TextInputType.text,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              "School/College/Institute",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: ("70 % (or) 7.0 CGPA")),
-                            keyboardType: TextInputType.text,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "Year of Pass",
-                            style: TextStyle(color: Colors.blue, fontSize: 20),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextField(
-                            decoration: InputDecoration(
+                                hintText: ("70 % (or) 7.0 CGPA"),
+                                hintStyle: TextStyle(
+                                    color: Colors.black12, fontSize: 20),
+                              ),
+                              keyboardType: TextInputType.text,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              "Year of Pass",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: ("2019")),
-                            keyboardType: TextInputType.text,
-                          ),
-                        ],
+                                hintText: ("2019"),
+                                hintStyle: TextStyle(
+                                    color: Colors.black12, fontSize: 20),
+                              ),
+                              keyboardType: TextInputType.text,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  )
-                ],
+                  ],
+                ),
               ),
             ),
           ),

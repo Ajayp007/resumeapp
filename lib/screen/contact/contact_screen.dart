@@ -28,7 +28,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
           ),
           centerTitle: true,
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey.shade200,
         body: Column(
           children: [
             Container(
@@ -132,9 +132,9 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                               validator: (value) {
                                 if (value!.isEmpty || value == null) {
                                   return "Email Is Required";
-                                } else if (value != RegExp(
+                                } else if (!RegExp(
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch('txtemail')) {
+                                    .hasMatch(value)) {
                                   return "Please Enter Valid Email";
                                 }
                                 return null;
@@ -155,7 +155,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                               validator: (value) {
                                 if (value!.isEmpty || value == null) {
                                   return "Number Is Required";
-                                } else if (value != 10) {
+                                } else if (value!.length != 10) {
                                   return "Please Enter Valid Number";
                                 }
                                 return null;
@@ -174,7 +174,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                                 label: Text("Address"),
                               ),
                               validator: (value) {
-                                if (value!.isEmpty || value == null) {
+                                if (value!.isEmpty) {
                                   return "Address Is Required";
                                 }
                                 return null;
@@ -184,25 +184,37 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                             const SizedBox(
                               height: 20,
                             ),
-                            ElevatedButton(
-                              onPressed: () {
-                                if (formkey ==
-                                    formkey.currentState!.validate()) {
-                                  String name = txtname.text;
-                                  String email = txtemail.text;
-                                  String phone = txtphone.text;
-                                  String add = txtaddr.text;
-                                }
-                              },
-                              child: const Text("Save"),
+                            Center(
+                              child: InkWell(
+                                onTap: () {
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                  if (formkey ==
+                                      formkey.currentState!.validate()) {
+                                    String name = txtname.text;
+                                    String email = txtemail.text;
+                                    String phone = txtphone.text;
+                                    String add = txtaddr.text;
+                                  }
+                                },
+                                child: Container(
+                                  height: 40,
+                                  width: 100,
+                                  color: Colors.indigoAccent,
+                                  child: const Center(
+                                    child: Text(
+                                      "Save",
+                                      style: TextStyle(color: Colors.white,fontSize: 18),
+                                    ),),
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
                       Container(
+                        padding: const EdgeInsets.all(20),
                         alignment: Alignment.center,
                         color: Colors.white,
-                        height: 100,
                         width: MediaQuery.sizeOf(context).width * 0.80,
                         child: Stack(
                           alignment: Alignment.bottomRight,
@@ -213,7 +225,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                               width: 30,
                               alignment: Alignment.center,
                               decoration: const BoxDecoration(
-                                color: Colors.black,
+                                color: Colors.white,
                                 shape: BoxShape.circle,
                               ),
                               child: const Icon(
