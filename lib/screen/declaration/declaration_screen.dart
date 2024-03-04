@@ -14,7 +14,7 @@ class _DeclarationScreenState extends State<DeclarationScreen> {
       appBar: AppBar(
         backgroundColor: Colors.indigoAccent,
         title: const Text(
-          "Reference",
+          "Declaration",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
