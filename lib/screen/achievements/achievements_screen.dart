@@ -71,6 +71,25 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
                       hintStyle: TextStyle(color: Colors.black45, fontSize: 45),
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: InkWell(
+                      onTap: () {
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 100,
+                        color: Colors.indigoAccent,
+                        child: const Center(
+                          child: Text(
+                            "Save",
+                            style: TextStyle(
+                                color: Colors.white, fontSize: 18),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

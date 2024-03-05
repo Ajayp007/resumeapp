@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/global.dart';
+
 class CarrierScreen extends StatefulWidget {
   const CarrierScreen({super.key});
 
@@ -20,7 +22,7 @@ class _CarrierScreenState extends State<CarrierScreen> {
         centerTitle: true,
         title: const Text(
           "Carrier Objective",
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.indigoAccent,
       ),
@@ -64,6 +66,12 @@ class _CarrierScreenState extends State<CarrierScreen> {
                             hintMaxLines: 8,
                             helperMaxLines: 8,
                           ),
+                          controller: txtcourse,
+                          validator: (value) {
+                            if (value!.isEmpty || value == null) {
+                              return "please enter the Course Or Degree";
+                            }
+                          },
                         )
                       ],
                     ),
@@ -73,7 +81,6 @@ class _CarrierScreenState extends State<CarrierScreen> {
                   ),
                   Container(
                     alignment: Alignment.bottomCenter,
-                    height: 200,
                     padding: const EdgeInsets.all(20),
                     width: MediaQuery.sizeOf(context).width,
                     decoration: BoxDecoration(
@@ -101,8 +108,45 @@ class _CarrierScreenState extends State<CarrierScreen> {
                             hintMaxLines: 8,
                             helperMaxLines: 8,
                           ),
+                          controller: txtexp,
+                          validator: (value) {
+                            if (value!.isEmpty || value == null) {
+                              return "please enter Your Current Experience";
+                            }
+                          },
                           keyboardType: TextInputType.text,
                         ),
+                        const SizedBox(height: 20),
+                        Center(
+                          child: InkWell(
+                            onTap: () {
+                              FocusManager.instance.primaryFocus?.unfocus();
+                              if (formkey.currentState!.validate()) {
+                                g1.carrierCourse = txtcourse.text;
+                                g1.carrierExp = txtexp.text;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Data Save"),
+                                    backgroundColor: Colors.indigoAccent,
+                                    behavior: SnackBarBehavior.floating,
+                                    duration: Duration(seconds: 3),
+                                  ),
+                                );
+                              }
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 100,
+                              color: Colors.indigoAccent,
+                              alignment: Alignment.center,
+                              child: const Text(
+                                "Save",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

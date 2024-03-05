@@ -8,6 +8,7 @@ import 'package:resumeapp/screen/interest/interest_screen.dart';
 import 'package:resumeapp/screen/personal/personal_screen.dart';
 import 'package:resumeapp/screen/projects/projects_screen.dart';
 import 'package:resumeapp/screen/reference/reference_screen.dart';
+import 'package:resumeapp/screen/resume/resume_screen.dart';
 import 'package:resumeapp/screen/technical/technical_screen.dart';
 import '../screen/contact/contact_screen.dart';
 import '../screen/homescreen/home_screen.dart';
@@ -25,4 +26,5 @@ Map<String,WidgetBuilder> name ={
   'achievements': (context) => const AchievementsScreen(),
   'reference': (context) => const ReferenceScreen(),
   'declaration': (context) => const DeclarationScreen(),
+  'resume': (context) => const ResumeScreen(),
 };

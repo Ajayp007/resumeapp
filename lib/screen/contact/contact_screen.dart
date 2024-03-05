@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/global.dart';
+
 class ContactInfoScreen extends StatefulWidget {
   const ContactInfoScreen({super.key});
 
@@ -9,7 +11,7 @@ class ContactInfoScreen extends StatefulWidget {
 
 class _ContactInfoScreenState extends State<ContactInfoScreen> {
   GlobalKey<FormState> formkey = GlobalKey();
-  int index = 0;
+  bool index = true;
 
   TextEditingController txtname = TextEditingController();
   TextEditingController txtemail = TextEditingController();
@@ -19,229 +21,275 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.indigoAccent,
-          title: const Text(
-            "Resume Workspace",
-            style: TextStyle(color: Colors.white),
+      child: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.indigoAccent,
+            title: const Text(
+              "Contact Information",
+              style: TextStyle(color: Colors.white),
+            ),
+            centerTitle: true,
           ),
-          centerTitle: true,
-        ),
-        backgroundColor: Colors.grey.shade200,
-        body: Column(
-          children: [
-            Container(
-              color: Colors.indigoAccent,
-              width: MediaQuery.sizeOf(context).width,
-              height: 100,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          index = 0;
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
+          backgroundColor: Colors.grey.shade200,
+          body: Column(
+            children: [
+              Container(
+                color: Colors.indigoAccent,
+                width: MediaQuery.sizeOf(context).width,
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            index = true;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
                             border: Border(
-                                bottom: BorderSide(
-                                    color:
-                                        index == 0 ? Colors.amber : Colors.blue,
-                                    width: 2))),
-                        alignment: Alignment.bottomCenter,
-                        child: const Text(
-                          "Contact",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          index = 1;
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                                color: index == 1 ? Colors.amber : Colors.blue,
-                                width: 2),
+                              bottom: BorderSide(
+                                  color: index == true
+                                      ? Colors.amber
+                                      : Colors.blue,
+                                  width: 2),
+                            ),
+                          ),
+                          alignment: Alignment.bottomCenter,
+                          child: const Text(
+                            "Contact",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                         ),
-                        alignment: Alignment.bottomCenter,
-                        child: const Text(
-                          "Photo",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            index = false;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                  color: index == false
+                                      ? Colors.amber
+                                      : Colors.blue,
+                                  width: 2),
+                            ),
+                          ),
+                          alignment: Alignment.bottomCenter,
+                          child: const Text(
+                            "Photo",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white),
-                  width: MediaQuery.sizeOf(context).width * 0.90,
-                  child: IndexedStack(
-                    index: index,
-                    children: [
-                      Form(
-                        key: formkey,
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              textInputAction: TextInputAction.next,
-                              decoration: const InputDecoration(
-                                icon: Icon(Icons.person),
-                                label: Text("Name"),
-                              ),
-                              validator: (value) {
-                                if (value!.isEmpty || value == null) {
-                                  return "Name Is Required";
-                                }
-                                return null;
-                              },
-                              controller: txtname,
-                              keyboardType: TextInputType.name,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              textInputAction: TextInputAction.next,
-                              decoration: const InputDecoration(
-                                icon: Icon(Icons.email),
-                                label: Text("Email"),
-                              ),
-                              validator: (value) {
-                                if (value!.isEmpty || value == null) {
-                                  return "Email Is Required";
-                                } else if (!RegExp(
-                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch(value)) {
-                                  return "Please Enter Valid Email";
-                                }
-                                return null;
-                              },
-                              controller: txtemail,
-                              keyboardType: TextInputType.emailAddress,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
-                                icon: Icon(Icons.phone_android),
-                                label: Text("Phone"),
-                              ),
-                              validator: (value) {
-                                if (value!.isEmpty || value == null) {
-                                  return "Number Is Required";
-                                } else if (value!.length != 10) {
-                                  return "Please Enter Valid Number";
-                                }
-                                return null;
-                              },
-                              controller: txtphone,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              textInputAction: TextInputAction.done,
-                              keyboardType: TextInputType.streetAddress,
-                              maxLines: 4,
-                              decoration: const InputDecoration(
-                                icon: Icon(Icons.location_on),
-                                label: Text("Address"),
-                              ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Address Is Required";
-                                }
-                                return null;
-                              },
-                              controller: txtaddr,
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Center(
-                              child: InkWell(
-                                onTap: () {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-                                  if (formkey ==
-                                      formkey.currentState!.validate()) {
-                                    String name = txtname.text;
-                                    String email = txtemail.text;
-                                    String phone = txtphone.text;
-                                    String add = txtaddr.text;
-                                  }
-                                },
-                                child: Container(
-                                  height: 40,
-                                  width: 100,
-                                  color: Colors.indigoAccent,
-                                  child: const Center(
-                                    child: Text(
-                                      "Save",
-                                      style: TextStyle(color: Colors.white,fontSize: 18),
-                                    ),),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        alignment: Alignment.center,
-                        color: Colors.white,
-                        width: MediaQuery.sizeOf(context).width * 0.80,
-                        child: Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            const CircleAvatar(radius: 70),
-                            Container(
-                              height: 30,
-                              width: 30,
-                              alignment: Alignment.center,
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.add,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: IndexedStack(
+                  index: index ? 0 : 1,
+                  children: [
+                    SingleChildScrollView(
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 0.90,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Form(
+                          key: formkey,
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                keyboardType: TextInputType.name,
+                                textInputAction: TextInputAction.next,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.person,
+                                    size: 40,
+                                    color: Colors.black45,
+                                  ),
+                                  hintText: "Name",
+                                  hintStyle: TextStyle(
+                                      color: Colors.black12, fontSize: 20),
+                                ),
+                                controller: txtname,
+                                validator: (value) {
+                                  if (value!.isEmpty || value == null) {
+                                    return "Name is required";
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.next,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.email,
+                                    size: 40,
+                                    color: Colors.black45,
+                                  ),
+                                  hintText: "Email",
+                                  hintStyle: TextStyle(
+                                      color: Colors.black12, fontSize: 20),
+                                ),
+                                controller: txtemail,
+                                validator: (value) {
+                                  if (value!.isEmpty || value == null) {
+                                    return "email is required";
+                                  } else if (!RegExp(
+                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      .hasMatch(value)) {
+                                    return "please enter email properly";
+                                  }
+                                },
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              TextFormField(
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.next,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.call,
+                                    size: 40,
+                                    color: Colors.black45,
+                                  ),
+                                  hintText: "Phone",
+                                  hintStyle: TextStyle(
+                                      color: Colors.black12, fontSize: 20),
+                                ),
+                                controller: txtphone,
+                                validator: (value) {
+                                  if (value!.isEmpty || value == null) {
+                                    return "enter the your phone number";
+                                  } else if (value.length != 10) {
+                                    return "please enter the 10 digits";
+                                  }
+                                },
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              TextFormField(
+                                maxLines: 3,
+                                keyboardType: TextInputType.name,
+                                textInputAction: TextInputAction.done,
+                                decoration: const InputDecoration(
+                                  icon: Icon(
+                                    Icons.location_on,
+                                    size: 40,
+                                    color: Colors.black45,
+                                  ),
+                                  hintText: "Address",
+                                  helperMaxLines: 4,
+                                  hintStyle: TextStyle(
+                                      color: Colors.black12, fontSize: 20),
+                                ),
+                                controller: txtaddr,
+                                validator: (value) {
+                                  if (value!.isEmpty || value == null) {
+                                    return "please enter the address";
+                                  }
+                                },
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                    if (formkey.currentState!.validate()) {
+                                      g1.contactName = txtname.text;
+                                      g1.contactEmail = txtemail.text;
+                                      g1.contactPhone = txtphone.text;
+                                      g1.contactAdd = txtaddr.text;
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text("Data Save"),
+                                          backgroundColor: Colors.indigoAccent,
+                                          behavior: SnackBarBehavior.floating,
+                                          duration: Duration(seconds: 3),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 40,
+                                    width: 100,
+                                    color: Colors.indigoAccent,
+                                    alignment: Alignment.center,
+                                    child: const Text(
+                                      "Save",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 200,
+                      width: MediaQuery.sizeOf(context).width * 0.90,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Stack(
+                        children: [
+                          CircleAvatar(
+                            //radius: 70,
+                            backgroundColor: Colors.black26,
+                            maxRadius: 50,
+                            child: Text(
+                              "ADD",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          CircleAvatar(
+                            backgroundColor: Colors.blueAccent,
+                            maxRadius: 15,
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

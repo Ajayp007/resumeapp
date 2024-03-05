@@ -86,6 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         icons: 'declaration.png',
                         name: 'Declaration',
                         routes: 'declaration'),
+                    feel(
+                        icons: 'declaration.png',
+                        name: 'Resume',
+                        routes: 'resume'),
                   ],
                 ),
               ),

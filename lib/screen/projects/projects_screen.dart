@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/global.dart';
+
 class ProjectsScreen extends StatefulWidget {
   const ProjectsScreen({super.key});
 
@@ -152,7 +154,8 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                             hintStyle:
                                 TextStyle(color: Colors.black12, fontSize: 19),
                             hintMaxLines: 2,
-                            contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
                           ),
                           validator: (value) {
                             if (value!.isEmpty || value == null) {
@@ -227,10 +230,10 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                             onTap: () {
                               FocusManager.instance.primaryFocus?.unfocus();
                               if (formkey == formkey.currentState!.validate()) {
-                                txtttl.text;
-                                txtrls.text;
-                                txttech.text;
-                                txtdes.text;
+                                g1.proTitle = txtttl.text;
+                                g1.proRoles = txtrls.text;
+                                g1.proTech = txttech.text;
+                                g1.proDesc = txtdes.text;
                               }
                             },
                             child: Container(

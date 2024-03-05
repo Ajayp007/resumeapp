@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/global.dart';
+
 class EducationScreen extends StatefulWidget {
   const EducationScreen({super.key});
 
@@ -8,13 +10,12 @@ class EducationScreen extends StatefulWidget {
 }
 
 class _EducationScreenState extends State<EducationScreen> {
+  GlobalKey<FormState> formkey = GlobalKey();
 
-  GlobalKey<FormState>formkey=GlobalKey();
-
-  TextEditingController txtcorse =TextEditingController();
-  TextEditingController txtsch =TextEditingController();
-  TextEditingController txtpr =TextEditingController();
-  TextEditingController txtyear =TextEditingController();
+  TextEditingController txtcorse = TextEditingController();
+  TextEditingController txtsch = TextEditingController();
+  TextEditingController txtpr = TextEditingController();
+  TextEditingController txtyear = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class _EducationScreenState extends State<EducationScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child:  Padding(
+                      child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,14 +68,12 @@ class _EducationScreenState extends State<EducationScreen> {
                                     color: Colors.black12, fontSize: 20),
                               ),
                               validator: (value) {
-                                if(value!.isEmpty || value == null)
-                                  {
-                                    return "Please Enter The Details";
-                                  }
+                                if (value!.isEmpty || value == null) {
+                                  return "Please Enter The Details";
+                                }
                                 return null;
                               },
                               controller: txtcorse,
-
                               keyboardType: TextInputType.text,
                             ),
                             const SizedBox(
@@ -97,6 +96,13 @@ class _EducationScreenState extends State<EducationScreen> {
                                 hintStyle: TextStyle(
                                     color: Colors.black12, fontSize: 20),
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty || value == null) {
+                                  return "Please Enter The Details";
+                                }
+                                return null;
+                              },
+                              controller: txtsch,
                               keyboardType: TextInputType.text,
                             ),
                             const SizedBox(
@@ -119,6 +125,13 @@ class _EducationScreenState extends State<EducationScreen> {
                                 hintStyle: TextStyle(
                                     color: Colors.black12, fontSize: 20),
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty || value == null) {
+                                  return "Please Enter The Details";
+                                }
+                                return null;
+                              },
+                              controller: txtpr,
                               keyboardType: TextInputType.text,
                             ),
                             const SizedBox(
@@ -141,7 +154,47 @@ class _EducationScreenState extends State<EducationScreen> {
                                 hintStyle: TextStyle(
                                     color: Colors.black12, fontSize: 20),
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty || value == null) {
+                                  return "Please Enter The Details";
+                                }
+                                return null;
+                              },
+                              controller: txtyear,
                               keyboardType: TextInputType.text,
+                            ),
+                            const SizedBox(height: 20),
+                            Center(
+                              child: InkWell(
+                                onTap: () {
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                  if (formkey.currentState!.validate()) {
+                                    g1.eduCourse = txtcorse.text;
+                                    g1.eduClg = txtsch.text;
+                                    g1.eduPr = txtpr.text;
+                                    g1.eduYear = txtyear.text;
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text("Data Save"),
+                                        backgroundColor: Colors.indigoAccent,
+                                        behavior: SnackBarBehavior.floating,
+                                        duration: Duration(seconds: 3),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  height: 40,
+                                  width: 100,
+                                  color: Colors.indigoAccent,
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    "Save",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 18),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),

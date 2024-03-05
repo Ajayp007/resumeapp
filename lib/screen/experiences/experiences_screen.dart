@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/global.dart';
+
 class ExperienceScreen extends StatefulWidget {
   const ExperienceScreen({super.key});
 
@@ -10,10 +12,11 @@ class ExperienceScreen extends StatefulWidget {
 class _ExperienceScreenState extends State<ExperienceScreen> {
   GlobalKey<FormState> formkey = GlobalKey();
 
-  TextEditingController txtdob = TextEditingController();
-  TextEditingController txtsta = TextEditingController();
-  TextEditingController txtlang = TextEditingController();
-  TextEditingController txtnati = TextEditingController();
+  TextEditingController txtcomname = TextEditingController();
+  TextEditingController txtsch = TextEditingController();
+  TextEditingController txtroles = TextEditingController();
+  TextEditingController txtdoj = TextEditingController();
+  TextEditingController txtdoe = TextEditingController();
 
   int index = 0;
 
@@ -70,7 +73,7 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
                             }
                             return null;
                           },
-                          controller: txtdob,
+                          controller: txtcomname,
                           keyboardType: TextInputType.name,
                         ),
                         const SizedBox(
@@ -98,7 +101,7 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
                             }
                             return null;
                           },
-                          controller: txtdob,
+                          controller: txtsch,
                           keyboardType: TextInputType.name,
                         ),
                         const SizedBox(
@@ -122,6 +125,13 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
                                 TextStyle(color: Colors.black12, fontSize: 19),
                             hintMaxLines: 3,
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty || value == null) {
+                              return "BirthDay Date Is Required";
+                            }
+                            return null;
+                          },
+                          controller: txtroles,
                           keyboardType: TextInputType.name,
                         ),
                         const SizedBox(height: 20),
@@ -204,23 +214,52 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
                             ),
                           ],
                         ),
-                        // Row(
-                        //   children: [
-                        //     TextFormField(
-                        //       decoration: const InputDecoration(
-                        //         hintText: "DD/MM/YYYY",
-                        //         border: OutlineInputBorder(),
-                        //       ),
-                        //     ),
-                        //     TextFormField(
-                        //       decoration: const InputDecoration(
-                        //         hintText: "DD/MM/YYYY",
-                        //         constraints: BoxConstraints(minWidth: 10),
-                        //         border: OutlineInputBorder(),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Flexible(
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  hintText: "DD/MM/YYYY",
+                                  hintStyle:
+                                  TextStyle(color: Colors.black12),
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty || value == null) {
+                                    return "BirthDay Date Is Required";
+                                  }
+                                  return null;
+                                },
+                                controller: txtdoj,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Flexible(
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  hintText: "DD/MM/YYYY",
+                                  hintStyle:
+                                  TextStyle(color: Colors.black12),
+                                  constraints: BoxConstraints(minWidth: 10),
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty || value == null) {
+                                    return "BirthDay Date Is Required";
+                                  }
+                                  return null;
+                                },
+                                controller: txtdoe,
+                              ),
+                            ),
+                          ],
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -229,10 +268,11 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
                             onTap: () {
                               FocusManager.instance.primaryFocus?.unfocus();
                               if (formkey == formkey.currentState!.validate()) {
-                                String text = txtdob.text;
-                                String sta = txtsta.text;
-                                String lang = txtlang.text;
-                                String nati = txtnati.text;
+                                g1.expCompName = txtcomname.text;
+                                g1.expCompClg = txtsch.text;
+                                g1.expCompRoles = txtroles.text;
+                                g1.expCompDoj = txtdoj.text;
+                                g1.expCompDoe = txtdoe.text;
                               }
                             },
                             child: Container(
