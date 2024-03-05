@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../utils/global.dart';
 
 class PersonalInfoScreen extends StatefulWidget {
   const PersonalInfoScreen({super.key});
@@ -209,10 +210,9 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                               FocusManager.instance.primaryFocus?.unfocus();
                               if (formkey ==
                                   formkey.currentState!.validate()) {
-                                String text = txtdob.text;
-                                String sta = txtsta.text;
-                                String lang = txtlang.text;
-                                String nati = txtnati.text;
+                               g1.personalDob = txtdob.text;
+                               g1.personalNation = txtsta.text;
+
                               }
                             },
                             child: Container(

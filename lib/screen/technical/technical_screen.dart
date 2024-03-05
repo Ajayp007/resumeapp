@@ -24,7 +24,6 @@ class _TechnicalScreenState extends State<TechnicalScreen> {
         child: Column(
           children: [
             Container(
-
               margin: const EdgeInsets.all(20),
               padding: const EdgeInsets.all(20),
               width: MediaQuery.sizeOf(context).width * 0.90,
@@ -70,7 +69,6 @@ class _TechnicalScreenState extends State<TechnicalScreen> {
                       contentPadding: EdgeInsets.symmetric(vertical: 1),
                       hintText: "+",
                       hintStyle: TextStyle(color: Colors.black45, fontSize: 45),
-
                     ),
                   ),
                   const SizedBox(
@@ -78,8 +76,7 @@ class _TechnicalScreenState extends State<TechnicalScreen> {
                   ),
                   Center(
                     child: InkWell(
-                      onTap: () {
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 40,
                         width: 100,
@@ -87,15 +84,13 @@ class _TechnicalScreenState extends State<TechnicalScreen> {
                         child: const Center(
                           child: Text(
                             "Save",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 18),
+                            style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ],
-
               ),
             ),
           ],

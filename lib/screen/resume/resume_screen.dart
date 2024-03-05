@@ -30,6 +30,8 @@ class _ResumeScreenState extends State<ResumeScreen> {
           Text("${g1.contactAdd}"),
           Text("${g1.carrierCourse}"),
           Text("${g1.carrierExp}"),
+          Text("${g1.personalDob}"),
+          Text("${g1.personalNation}"),
           Text("${g1.eduCourse}"),
           Text("${g1.eduClg}"),
           Text("${g1.eduPr}"),
