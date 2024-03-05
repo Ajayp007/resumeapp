@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../utils/global.dart';
 
@@ -12,6 +15,7 @@ class ContactInfoScreen extends StatefulWidget {
 class _ContactInfoScreenState extends State<ContactInfoScreen> {
   GlobalKey<FormState> formkey = GlobalKey();
   bool index = true;
+  String path = "";
 
   TextEditingController txtname = TextEditingController();
   TextEditingController txtemail = TextEditingController();
@@ -261,26 +265,32 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                       width: MediaQuery.sizeOf(context).width * 0.90,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Stack(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Stack(
+                        alignment: Alignment.bottomRight,
                         children: [
-                          CircleAvatar(
-                            //radius: 70,
-                            backgroundColor: Colors.black26,
-                            maxRadius: 50,
-                            child: Text(
+                           CircleAvatar(
+                            backgroundColor: Colors.pink.shade200,
+                            backgroundImage: FileImage(File(path),),
+                            maxRadius: 70,
+                            child: const Text(
                               "ADD",
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: Colors.black38,fontSize: 30),
                             ),
                           ),
-                          CircleAvatar(
-                            backgroundColor: Colors.blueAccent,
-                            maxRadius: 15,
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
+                          IconButton.filled(
+                            onPressed: () async {
+                              ImagePicker picker = ImagePicker();
+                              XFile? image = await picker.pickImage(
+                                  source: ImageSource.gallery);
+                              setState(() {
+                                path = image!.path;
+                                g1.profileImage = image.path;
+                              });
+                            },
+                            icon: const Icon(Icons.add),
                           ),
                         ],
                       ),

@@ -42,4 +42,6 @@ class Global {
   String? declDesc;
   String? declDate;
   String? declPlace;
+
+  String? profileImage;
 }
