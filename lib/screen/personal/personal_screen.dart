@@ -16,6 +16,12 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
   TextEditingController txtlang = TextEditingController();
   TextEditingController txtnati = TextEditingController();
 
+  String status = "Single";
+
+  bool isEnglish = false;
+  bool isHindi = false;
+  bool isGujarati = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +78,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                           keyboardType: TextInputType.name,
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         const Text(
                           "Marital Status",
@@ -81,40 +87,41 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                               fontSize: 22,
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 20),
-                        const Column(
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.circle_outlined,
-                                    color: Colors.indigoAccent),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Single",
-                                  style: TextStyle(
-                                      color: Colors.indigoAccent,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Icon(Icons.circle_outlined, color: Colors.grey),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Married",
-                                  style: TextStyle(
-                                      color: Colors.black12,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
+                        RadioListTile(
+                          value: "Single",
+                          groupValue: status,
+                          onChanged: (value) {
+                            setState(() {
+                              status = value!;
+                              g1.status = value;
+                            });
+                          },
+                          title: Text(
+                            "Single",
+                            style: status == "Single"
+                                ? const TextStyle(color: Colors.blue)
+                                : const TextStyle(color: Colors.black),
+                          ),
+                          contentPadding: EdgeInsets.zero,
                         ),
-                        const SizedBox(height: 20),
+                        RadioListTile(
+                          value: "Married",
+                          groupValue: status,
+                          onChanged: (value) {
+                            setState(() {
+                              status = value!;
+                              g1.status = value;
+                            });
+                          },
+                          title: Text(
+                            "Married",
+                            style: status == "Married"
+                                ? const TextStyle(color: Colors.blue)
+                                : const TextStyle(color: Colors.black),
+                          ),
+                          contentPadding: EdgeInsets.zero,
+                        ),
+                        const SizedBox(height: 10),
                         const Text(
                           "Languages Known",
                           style: TextStyle(
@@ -122,60 +129,39 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                               fontSize: 22,
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 20),
-                        const Row(
-                          children: [
-                            Icon(
-                              Icons.check_box_outline_blank,
-                              color: Colors.grey,
-                              size: 35,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "English",
-                              style: TextStyle(
-                                  color: Colors.black12,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        const Row(
-                          children: [
-                            Icon(
-                              Icons.check_box_outline_blank,
-                              color: Colors.grey,
-                              size: 35,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "Hindi",
-                              style: TextStyle(
-                                  color: Colors.black12,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        const Row(
-                          children: [
-                            Icon(
-                              Icons.check_box_outline_blank,
-                              color: Colors.grey,
-                              size: 35,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "Gujarati",
-                              style: TextStyle(
-                                  color: Colors.black12,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
+                        CheckboxListTile(
+                            value: isEnglish,
+                            onChanged: (value) {
+                              setState(() {
+                                isEnglish = value!;
+                                g1.isEnglish = value;
+                              });
+                            },
+                            title: const Text("English"),
+                            controlAffinity: ListTileControlAffinity.leading,
+                            contentPadding: EdgeInsets.zero),
+                        CheckboxListTile(
+                            value: isHindi,
+                            onChanged: (value) {
+                              setState(() {
+                                isHindi = value!;
+                                g1.isHindi = value;
+                              });
+                            },
+                            title: const Text("Hindi"),
+                            controlAffinity: ListTileControlAffinity.leading,
+                            contentPadding: EdgeInsets.zero),
+                        CheckboxListTile(
+                            value: isGujarati,
+                            onChanged: (value) {
+                              setState(() {
+                                isGujarati = value!;
+                                g1.isGujarati = value;
+                              });
+                            },
+                            title: const Text("Gujarati"),
+                            controlAffinity: ListTileControlAffinity.leading,
+                            contentPadding: EdgeInsets.zero),
                         const SizedBox(height: 10),
                         const Text(
                           "Nationality",
@@ -208,11 +194,10 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                           child: InkWell(
                             onTap: () {
                               FocusManager.instance.primaryFocus?.unfocus();
-                              if (formkey ==
-                                  formkey.currentState!.validate()) {
-                               g1.personalDob = txtdob.text;
-                               g1.personalNation = txtsta.text;
-
+                              if (formkey == formkey.currentState!.validate()) {
+                                g1.personalDob = txtdob.text;
+                                g1.personalNation = txtsta.text;
+                                g1.status = txtsta.text;
                               }
                             },
                             child: Container(
@@ -220,17 +205,19 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                               width: 100,
                               color: Colors.indigoAccent,
                               child: const Center(
-                                  child: Text(
-                                "Save",
-                                style: TextStyle(color: Colors.white,fontSize: 18),
-                              ),),
+                                child: Text(
+                                  "Save",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

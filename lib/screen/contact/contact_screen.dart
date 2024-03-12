@@ -271,14 +271,22 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                       child: Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                           CircleAvatar(
+                          path.isEmpty?CircleAvatar(
                             backgroundColor: Colors.pink.shade200,
-                            backgroundImage: FileImage(File(path),),
+
                             maxRadius: 70,
                             child: const Text(
                               "ADD",
-                              style: TextStyle(color: Colors.black38,fontSize: 30),
+                              style: TextStyle(
+                                  color: Colors.black38, fontSize: 30),
                             ),
+                          ):
+                          CircleAvatar(
+                            backgroundColor: Colors.pink.shade200,
+                            backgroundImage: FileImage(
+                              File(path),
+                            ),
+                            maxRadius: 70,
                           ),
                           IconButton.filled(
                             onPressed: () async {

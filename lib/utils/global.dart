@@ -12,6 +12,10 @@ class Global {
 
   String? personalDob;
   String? personalNation;
+  String? status;
+  bool? isEnglish;
+  bool? isHindi;
+  bool? isGujarati;
 
   String? eduCourse;
   String? eduClg;
@@ -44,4 +48,6 @@ class Global {
   String? declPlace;
 
   String? profileImage;
+
+  List<String> technical=[];
 }

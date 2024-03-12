@@ -17,6 +17,10 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   TextEditingController txttech = TextEditingController();
   TextEditingController txtdes = TextEditingController();
 
+  bool isC = false;
+  bool isCpp = false;
+  bool isFlutter = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,12 +62,13 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                         TextFormField(
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "Resume Builder App",
-                              hintStyle: TextStyle(
-                                  color: Colors.black26, fontSize: 20),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 10)),
+                            border: OutlineInputBorder(),
+                            hintText: "Resume Builder App",
+                            hintStyle:
+                                TextStyle(color: Colors.black26, fontSize: 20),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 10),
+                          ),
                           validator: (value) {
                             if (value!.isEmpty || value == null) {
                               return "Title Is Required";
@@ -74,7 +79,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                           keyboardType: TextInputType.name,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         const Text(
                           "Technologies",
@@ -83,60 +88,36 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                               fontSize: 22,
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 5),
-                        const Row(
-                          children: [
-                            Icon(
-                              Icons.check_box_outline_blank,
-                              color: Colors.grey,
-                              size: 35,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "C Programming",
-                              style: TextStyle(
-                                  color: Colors.black12,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        const Row(
-                          children: [
-                            Icon(
-                              Icons.check_box_outline_blank,
-                              color: Colors.grey,
-                              size: 35,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "C++",
-                              style: TextStyle(
-                                  color: Colors.black12,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                        const Row(
-                          children: [
-                            Icon(
-                              Icons.check_box_outline_blank,
-                              color: Colors.grey,
-                              size: 35,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "Flutter",
-                              style: TextStyle(
-                                  color: Colors.black12,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
+                        CheckboxListTile(
+                            value: isC,
+                            onChanged: (value) {
+                              setState(() {
+                                isC = value!;
+                              });
+                            },
+                            title: const Text("C Programming"),
+                            controlAffinity: ListTileControlAffinity.leading,
+                            contentPadding: EdgeInsets.zero),
+                        CheckboxListTile(
+                            value: isCpp,
+                            onChanged: (value) {
+                              setState(() {
+                                isCpp = value!;
+                              });
+                            },
+                            title: const Text("C++"),
+                            controlAffinity: ListTileControlAffinity.leading,
+                            contentPadding: EdgeInsets.zero),
+                        CheckboxListTile(
+                            value: isFlutter,
+                            onChanged: (value) {
+                              setState(() {
+                                isFlutter = value!;
+                              });
+                            },
+                            title: const Text("Flutter"),
+                            controlAffinity: ListTileControlAffinity.leading,
+                            contentPadding: EdgeInsets.zero),
                         const SizedBox(height: 10),
                         const Text(
                           "Roles",

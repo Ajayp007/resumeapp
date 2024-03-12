@@ -18,50 +18,133 @@ class _ResumeScreenState extends State<ResumeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.indigoAccent,
         title: const Text(
-          "Resume Workspace",
+          "Resume",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),
       backgroundColor: Colors.grey.shade200,
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text("${g1.contactName}"),
-            Text("${g1.contactEmail}"),
-            Text("${g1.contactPhone}"),
-            Text("${g1.contactAdd}"),
-            Text("${g1.carrierCourse}"),
-            Text("${g1.carrierExp}"),
-            Text("${g1.personalDob}"),
-            Text("${g1.personalNation}"),
-            Text("${g1.eduCourse}"),
-            Text("${g1.eduClg}"),
-            Text("${g1.eduPr}"),
-            Text("${g1.eduYear}"),
-            Text("${g1.expCompName}"),
-            Text("${g1.expCompClg}"),
-            Text("${g1.expCompRoles}"),
-            Text("${g1.expCompDoj}"),
-            Text("${g1.expCompDoe}"),
-            Text("${g1.techSkill}"),
-            Text("${g1.techSkills}"),
-            Text("${g1.proTitle}"),
-            Text("${g1.proTech}"),
-            Text("${g1.proRoles}"),
-            Text("${g1.proDesc}"),
-            Text("${g1.achiAve}"),
-            Text("${g1.achiAve2}"),
-            Text("${g1.refeName}"),
-            Text("${g1.refeDesi}"),
-            Text("${g1.refeOrg}"),
-            Text("${g1.declDesc}"),
-            Text("${g1.declDate}"),
-            Text("${g1.declPlace}"),
-            Image.file(
-              File("${g1.profileImage}"),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Name :- ${g1.contactName}",
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "E-mail :- ${g1.contactEmail}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      Text(
+                        "Mobile :- ${g1.contactPhone}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      Text(
+                        "Address :- ${g1.contactAdd}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  Image.file(
+                    File("${g1.profileImage}"),
+                    height: 100,
+                    width: 100,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Divider(
+                height: 10,
+                color: Colors.black,
+                thickness: 2,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Carrier Objectiv",
+                style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    decorationStyle: TextDecorationStyle.solid),
+              ),
+               const SizedBox(height: 10),
+               Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   Text(
+                     "Course :- ${g1.carrierCourse}",
+                     style: const TextStyle(
+                         fontSize: 16),
+                   ),
+                   Text(
+                     "Work Experience :- ${g1.carrierExp}",
+                     style: const TextStyle(
+                         fontSize: 16),
+                   ),
+                 ],
+               ),
+              const SizedBox(height: 10),
+              const Divider(
+                height: 10,
+                color: Colors.black,
+                thickness: 2,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Personal Details",
+                style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    decorationStyle: TextDecorationStyle.solid),
+              ),
+              const SizedBox(height: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Date Of Birth :- ${g1.personalDob}",
+                    style: const TextStyle(
+                        fontSize: 16,),
+                  ),
+                  Text(
+                    "Marital Status :- ${g1.status}",
+                    style: const TextStyle(
+                        fontSize: 16,),
+                  ),
+                  Text(
+                    "Languages Known :- ${g1.personalDob}",
+                    style: const TextStyle(
+                        fontSize: 16,),
+                  ),
+                  Text(
+                    "Nationality :- ${g1.personalNation}",
+                    style: const TextStyle(
+                        fontSize: 16),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
