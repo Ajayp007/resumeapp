@@ -77,7 +77,7 @@ class _ResumeScreenState extends State<ResumeScreen> {
                 height: 10,
               ),
               const Text(
-                "Carrier Objectiv",
+                "Carrier Objective",
                 style: TextStyle(
                     fontSize: 23,
                     fontWeight: FontWeight.bold,
@@ -131,16 +131,111 @@ class _ResumeScreenState extends State<ResumeScreen> {
                     style: const TextStyle(
                         fontSize: 16,),
                   ),
-                  Text(
-                    "Languages Known :- ${g1.personalDob}",
-                    style: const TextStyle(
-                        fontSize: 16,),
+                  const Text(
+                    "Language Known :- ",
+                    style: TextStyle(
+                      fontSize: 16,),
+                  ),
+                  Visibility(visible: g1.isEnglish,
+                    child: const Text(
+                      "English",
+                      style: TextStyle(
+                          fontSize: 16,),
+                    ),
+                  ),
+                  Visibility(visible: g1.isHindi,
+                    child: const Text(
+                      "Hindi",
+                      style: TextStyle(
+                          fontSize: 16,),
+                    ),
+                  ),
+                  Visibility(visible: g1.isGujarati,
+                    child: const Text(
+                      "Gujarati",
+                      style: TextStyle(
+                          fontSize: 16,),
+                    ),
                   ),
                   Text(
                     "Nationality :- ${g1.personalNation}",
                     style: const TextStyle(
                         fontSize: 16),
                   ),
+                  const SizedBox(height: 10),
+                  const Divider(
+                    height: 10,
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  const Text(
+                    "Education Details",
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.solid),
+                  ),
+                  Text("Course/Degree :- ${g1.eduCourse}"),
+                  Text("School/College/Institute :- ${g1.eduClg}"),
+                  Text("School/College/Institute :- ${g1.eduPr}"),
+                  Text("Year Of Pass :- ${g1.eduYear}"),
+                  const SizedBox(height: 10),
+                  const Divider(
+                    height: 10,
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  const Text(
+                    "Experience Details",
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.solid),
+                  ),
+                  const SizedBox(height: 10),
+                  Text("Course/Degree :- ${g1.expCompName}"),
+                  Text("School/College/Institute :- ${g1.expCompClg}"),
+                  Text("Your Role :- ${g1.expCompRoles}"),
+                  Text("Date You Join :- ${g1.expCompDoj}"),
+                  Text("Date You Exit :- ${g1.expCompDoe}"),
+                  const SizedBox(height: 10),
+                  const Divider(
+                    height: 10,
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  const Text(
+                    "About Of Your Technical Skills",
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.solid),
+                  ),
+                  const SizedBox(height: 10),
+
+                  const SizedBox(height: 10),
+                  const Divider(
+                    height: 10,
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  const Text(
+                    "Projects Details",
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.solid),
+                  ),
+                  const SizedBox(height: 10),
+                  Text("Project Title :- ${g1.proTitle}"),
+                  Text("Project Title :- ${g1.proTitle}"),
+                  Text("Project Title :- ${g1.proTitle}"),
+                  Text("Project Title :- ${g1.proTitle}"),
+
                 ],
               ),
             ],

@@ -13,9 +13,10 @@ class Global {
   String? personalDob;
   String? personalNation;
   String? status;
-  bool? isEnglish;
-  bool? isHindi;
-  bool? isGujarati;
+
+  bool isEnglish=true;
+  bool isHindi=true;
+  bool isGujarati=true;
 
   String? eduCourse;
   String? eduClg;
@@ -28,16 +29,12 @@ class Global {
   String? expCompDoj;
   String? expCompDoe;
 
-  String? techSkill;
-  String? techSkills;
-
   String? proTitle;
   String? proTech;
   String? proRoles;
   String? proDesc;
 
-  String? achiAve;
-  String? achiAve2;
+  List<String> achiv=[];
 
   String? refeName;
   String? refeDesi;
@@ -50,4 +47,9 @@ class Global {
   String? profileImage;
 
   List<String> technical=[];
+
+  bool isC=true;
+  bool isCpp=true;
+  bool isFlutter=true;
+
 }

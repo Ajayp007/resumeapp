@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/global.dart';
+
 class AchievementsScreen extends StatefulWidget {
   const AchievementsScreen({super.key});
 
@@ -8,92 +10,92 @@ class AchievementsScreen extends StatefulWidget {
 }
 
 class _AchievementsScreenState extends State<AchievementsScreen> {
+  List<TextEditingController> l1 = [TextEditingController()];
+  List<String> l2 = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigoAccent,
         title: const Text(
-          "Achievements",
+          "Technical Skills",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              for (int i = 0; i <= l1.length; i++) {
+                l2.add(l1[i].toString());
+              }
+              g1.achiv = l2;
+            },
+            icon: const Icon(Icons.check),
+          ),
+        ],
       ),
       backgroundColor: Colors.grey.shade200,
       body: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.all(20),
-              padding: const EdgeInsets.all(20),
-              width: MediaQuery.sizeOf(context).width * 0.90,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+        child: Container(
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+          width: MediaQuery.sizeOf(context).width * 0.90,
+          decoration: const BoxDecoration(color: Colors.white),
+          child: Column(
+            children: [
+              const Text("Enter Your Skill"),
+              const SizedBox(
+                height: 20,
               ),
-              child: Column(
-                children: [
-                  const Row(
+              Column(
+                children: List.generate(
+                  l1.length,
+                      (index) => Row(
                     children: [
-                      Text(
-                        "Enter Achievements",
-                        style: TextStyle(
-                            color: Colors.black45,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: "C Programming",
+                            hintStyle:
+                            TextStyle(color: Colors.black45, fontSize: 18),
+                          ),
+                          controller: l1[index],
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            l1.removeAt(index);
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.delete_outlined,
+                          size: 30,
+                        ),
                       ),
                     ],
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Exceeded sales 17% average",
-                      hintStyle: TextStyle(color: Colors.black45, fontSize: 18),
-                      contentPadding: EdgeInsets.symmetric(vertical: 20.0),
-                      suffixIcon: Icon(Icons.delete_forever_outlined, size: 35),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Exceeded sales 17% average",
-                      hintStyle: TextStyle(color: Colors.black45, fontSize: 18),
-                      suffixIcon: Icon(Icons.delete_forever_outlined, size: 35),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    textAlign: TextAlign.center,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(vertical: 1),
-                      hintText: "+",
-                      hintStyle: TextStyle(color: Colors.black45, fontSize: 45),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Center(
-                    child: InkWell(
-                      onTap: () {
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 100,
-                        color: Colors.indigoAccent,
-                        child: const Center(
-                          child: Text(
-                            "Save",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 18),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              Container(
+                height: 50,
+                width: MediaQuery.sizeOf(context).width * 0.80,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      l1.add(TextEditingController());
+                    });
+                  },
+                  icon: const Icon(Icons.add),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

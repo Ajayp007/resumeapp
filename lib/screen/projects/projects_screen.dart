@@ -93,9 +93,10 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                             onChanged: (value) {
                               setState(() {
                                 isC = value!;
+                                g1.isC = value;
                               });
                             },
-                            title: const Text("C Programming"),
+                            title: const Text("C"),
                             controlAffinity: ListTileControlAffinity.leading,
                             contentPadding: EdgeInsets.zero),
                         CheckboxListTile(
@@ -103,6 +104,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                             onChanged: (value) {
                               setState(() {
                                 isCpp = value!;
+                                g1.isCpp = value;
                               });
                             },
                             title: const Text("C++"),
@@ -113,6 +115,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
                             onChanged: (value) {
                               setState(() {
                                 isFlutter = value!;
+                                g1.isFlutter = value;
                               });
                             },
                             title: const Text("Flutter"),

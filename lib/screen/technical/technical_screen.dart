@@ -29,7 +29,7 @@ class _TechnicalScreenState extends State<TechnicalScreen> {
               for (int i = 0; i <= l1.length; i++) {
                 l2.add(l1[i].toString());
               }
-              g1.technical=l2;
+              g1.technical = l2;
             },
             icon: const Icon(Icons.check),
           ),
@@ -49,34 +49,35 @@ class _TechnicalScreenState extends State<TechnicalScreen> {
                 height: 20,
               ),
               Column(
-                  children: List.generate(
-                l1.length,
-                (index) => Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: "C Programming",
-                          hintStyle:
-                              TextStyle(color: Colors.black45, fontSize: 18),
+                children: List.generate(
+                  l1.length,
+                  (index) => Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: "C Programming",
+                            hintStyle:
+                                TextStyle(color: Colors.black45, fontSize: 18),
+                          ),
+                          controller: l1[index],
                         ),
-                        controller: l1[index],
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          l1.removeAt(index);
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.delete_outlined,
-                        size: 30,
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            l1.removeAt(index);
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.delete_outlined,
+                          size: 30,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )),
+              ),
               const SizedBox(height: 20),
               Container(
                 height: 50,
